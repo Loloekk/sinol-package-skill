@@ -32,10 +32,11 @@ solutions: abc.cpp O(n log n) · abc2.cpp independent O(n log n) (subagent)
            abcb1.cpp greedy by value → 0 · abcb2.cpp int overflow → fails 4
 tests: per group min/max/random/special (sorted, all equal, ...), anti-greedy
 statement: not by me (only the subtask table) — or should I write it?
+editorial: doc/abcopr.tex, after verify
 ```
 
 Offer, don't impose: second independent model, more wrong solutions,
-statement or translation.
+statement or translation. The editorial is the default; the user can opt out.
 
 ## 3. Build
 
@@ -107,10 +108,15 @@ sinol-make verify
 python3 ../contest.py lint <id>
 ```
 
-## 5. Report
+## 5. Editorial
+
+Write `doc/<id>opr.tex` following references/editorial.md, using the scores and
+measurements from step 4. Run its checks.
+
+## 6. Report
 
 Summary for the user: groups and points, solutions with their scores per
-group, number of tests per group, what was verified (commands run), what is
-left to them (statement text, `TODO`s), and anything uncertain. Suggest a commit
+group, number of tests per group, what was verified (commands run), what in the
+editorial is proved and what is only measured, what is left to them (statement text, `TODO`s), and anything uncertain. Suggest a commit
 message `<id>: ...` (with `!ver` if the package is ready to be checked, see
 references/contest-repo.md) but don't commit unless asked.

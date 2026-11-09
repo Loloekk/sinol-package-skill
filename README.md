@@ -10,7 +10,8 @@ with tests written in [sinol-gen](https://github.com/kubat1234/sinol-gen).
   first, then writes the model and an independent second solution, slow and
   wrong solutions, the ingen (every test, statement examples included), the
   per-group input verifier and the checker / library / interactor, and checks
-  it all with sinol-make. Statements only when asked (Polish by default).
+  it all with sinol-make. Statements only when asked (Polish by default). Every
+  new package also gets a Polish editorial, `doc/<id>opr.tex`.
 - **new contest**: several packages from your specs or from loose ideas.
 - **review**: an audit of any package, with findings sorted by severity.
 - **modernize**: old Makefile-based packages (committed tests, old generators)
@@ -55,7 +56,7 @@ Modernize ../06Zakopane26/bit into this repo.
 skills/sinol-package/
   SKILL.md                     entry point: modes, ground rules, which file to read when
   workflows/                   new-package, new-contest, review, modernize
-  references/                  package format, task types, generator, quality, statement, sinol-make, contest repo
+  references/                  package format, task types, generator, quality, statement, editorial, sinol-make, contest repo
   references/sinol-gen/        copy of sinol-gen's docs and examples        } bin/sync-assets.sh
   scripts/contest.py           copy of contest-template's contest.py        } from ../contest-template
   assets/contest-template/     copy of contest-template                     } and ../sinol-gen

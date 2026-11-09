@@ -6,6 +6,7 @@
 abc/
   config.yml
   doc/abczad.tex  (+ abczad-en.tex …)  sinol.cls  languages/*.cls  logo.png
+  doc/abcopr.tex       editorial for the jury (references/editorial.md)
   in/  out/
   prog/abc.cpp         model solution (the one used to generate .out)
   prog/abc2.cpp …      other correct solutions

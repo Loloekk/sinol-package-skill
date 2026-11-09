@@ -41,7 +41,7 @@ abc  Ciąg          std   easy        sum of a range after updates           2
 
 - Easy packages may be delegated to subagents (`Agent`, `model: "sonnet"`), one
   package per agent, with: the contest root, the accepted plan for that package,
-  "follow workflows/new-package.md steps 3–4, do not write the statement, do
+  "follow workflows/new-package.md steps 3–5, do not write the statement, do
   not touch other packages, report the run table". Hard packages: do them
   yourself (or an agent with the inherited model) with the full new-package flow.
 - Agents must not run `sinol-make init` for the same id in parallel; create all

@@ -30,6 +30,13 @@ Use when finishing a package and when reviewing one.
 - [ ] Library hides the input (`fclose(stdin)`), state not clashing with contestants.
 - [ ] `dlazaw/` (library / interactive task): the header equals `prog/abclib.h`, the sample library / interactor compiles and works with the model, the statement says how to use it; tests in `dlazaw/tests/` if more than one.
 
+## Editorial
+- [ ] New package: `doc/<id>opr.tex` exists, unless the user opted out. Existing package: the user was asked.
+- [ ] Has all three parts: the task without the story, the quick bullets, the full explanation (editorial.md).
+- [ ] Subtask table = config.yml; points and numbers come from real runs; named solutions exist in `prog/`.
+- [ ] Each claim is marked as proved, measured or a rough estimate.
+- [ ] Every page looked at after the last change; not in `attachments/` or `dlazaw/`.
+
 ## Package hygiene
 - [ ] `contest.py lint <id>`: no errors; no `TEMPLATE:`/`TODO` left (except the story if the user writes it).
 - [ ] No Makefiles, no `example-*.cpp`, no stray binaries; shared files in sync.
