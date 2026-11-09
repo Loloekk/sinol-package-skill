@@ -37,7 +37,9 @@ Run a quick review (workflows/review.md steps 1 and 3, read-only) and propose:
   `!*.out` in `<id>/in/.gitignore` / `<id>/out/.gitignore`. Never delete them;
 - **statement**: move to the current skeleton (keep the text; fix the subtask
   table, `\RAM`, examples). Rewrite the wording only if asked;
-- **inwer**: add per-group limits if missing.
+- **inwer**: add per-group limits if missing;
+- **editorial**: if `doc/<id>opr.tex` is missing, ask whether to add one
+  (references/editorial.md). If yes, write it after step 3.
 
 ## 2. Convert
 

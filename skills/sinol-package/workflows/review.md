@@ -20,6 +20,8 @@ cp -r <pkg> <scratchpad>/review/<id> && cd <scratchpad>/review/<id>
 ## 2. Correctness of the task
 
 - Statement ↔ config: points, limits, groups, memory, examples correct.
+- Editorial `doc/<id>opr.tex`, if present: has the required parts and agrees with
+  `config.yml`, the model and the run table (references/editorial.md).
 - Is the statement unambiguous? (equal values, empty answer, 0/1-indexing,
   multiple answers without a checker, output format of special cases.)
 - Model solution: read it, check complexity against limits, edge cases.
@@ -62,3 +64,6 @@ What I ran: lint, gen, inwer, run (time tool), stress N tests ...
 
 Each finding: what, where (file:line), why it matters, concrete fix. Mark
 clearly what was verified by running vs. by reading.
+
+If the package has no editorial, list it under Suggestions and ask at the end
+whether to add one.

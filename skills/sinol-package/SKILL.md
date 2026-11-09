@@ -32,6 +32,7 @@ Reference material — read the file when the task touches its topic:
 | [references/package-format.md](references/package-format.md) | files, test names, every `config.yml` key, scoring |
 | [references/task-types.md](references/task-types.md) | checker, library or interactor protocols |
 | [references/statement.md](references/statement.md) | the statement skeleton, subtask table, translations |
+| [references/editorial.md](references/editorial.md) | the editorial `doc/<id>opr.tex`: when, structure, checks, skeleton |
 | [references/quality.md](references/quality.md) | before calling a package finished, and in reviews |
 | [references/sinol-make.md](references/sinol-make.md) | commands, the time tool, pitfalls |
 | [references/contest-repo.md](references/contest-repo.md) | `contest.py`, updates of gen.h / tools, the release, commit conventions |
@@ -71,6 +72,9 @@ Reference material — read the file when the task touches its topic:
    files the user didn't mention. A package without an ingen has its tests
    only in git — never delete them without asking. Don't commit or push unless
    asked; when you suggest a commit message use `<id>: summary` (≤ 50 chars).
+7. **Every new package gets an editorial** `doc/<id>opr.tex`, written after
+   `verify`. When working on an existing package without one, ask once whether
+   to add it. See [references/editorial.md](references/editorial.md).
 
 ## Effort by difficulty
 
