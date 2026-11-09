@@ -28,6 +28,9 @@ translate only if asked.
   archive holds only tests, so it can't pick the editorial up by itself.
 - Use a plain `article`, not `sinol.cls` with the `opr` option, which requires
   a `Testy` section and its own macros. `logo.png` is already in `doc/`.
+- **No `tikz`.** The release workflow installs a minimal LaTeX without it, so a
+  package using `tikz` builds locally but fails the release, and with it the
+  whole `<id>.tgz`. Draw figures with the built-in `picture` environment.
 
 The audience is the jury. `<id>.tgz` already contains `prog/` with all
 solutions, so the editorial may name solution files.
@@ -66,6 +69,8 @@ Add a figure when it shows a structure better than words. An easy task needs
 ## Checks before reporting
 
 - `sinol-make doc` succeeds, and `.cache/doc_logs/<id>opr.log` has no `Overfull`.
+- `.cache/doc_logs/<id>opr.fls` loads only what `.github/workflows/release.yml`
+  installs: a local build proves nothing if the local TeX Live is the full one.
 - Render **every** page and look at it **after the last change**
   (`pdftoppm -r 80 -png doc/<id>opr.pdf <scratchpad>/opr`).
 - The subtask table matches `config.yml`, and every named solution exists in `prog/`.
@@ -85,7 +90,7 @@ Add a figure when it shows a structure better than words. An easy task needs
 \usepackage[polish]{babel}
 \usepackage{amsmath}
 \usepackage{graphicx}
-\usepackage{tikz}
+\usepackage{color}
 
 \setlength{\textwidth}{16.6cm}
 \setlength{\textheight}{24.5cm}
