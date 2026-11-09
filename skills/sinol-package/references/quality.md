@@ -23,6 +23,7 @@ Use when finishing a package and when reviewing one.
 - [ ] Dependencies (`subtask_dependencies`) instead of duplicated tests; listed explicitly (not transitive).
 - [ ] Every test in the ingen (sinol-gen), examples and ocen too; nothing committed in `in/` / `out/`; no `rand()` / `<random>` / `std::shuffle`.
 - [ ] Maximal tests not all at exactly MAXN (`gen::near`); `gen::check` where a test's purpose could silently break.
+- [ ] Every test using `R` has its own fixed `.seed(x)`, unique in the package, so deleting a test changes no other test (generator.md).
 
 ## Checker / library / interactor
 - [ ] Never crashes; malformed output = WRONG; partial points as intended (task-types.md).

@@ -61,7 +61,8 @@ statement or translation.
    references/generator.md (what to generate) and
    references/sinol-gen/guide.md (how). Every group: smallest case, maximal
    case, random, special structures, and a test aimed at each wrong solution;
-   `gen::check` for tests whose purpose could silently break.
+   `gen::check` for tests whose purpose could silently break; a fixed `.seed(x)`
+   for every random test, so that tests can be deleted without changing the rest.
 6. **Statement examples and ocen tests** go into the ingen too:
    `g.example(...)` (one → `<id>0.in`, several → `0a`, `0b`; the statement
    uses `\makecompactexample{0}` or `{0a}`, `{0b}`) and `g.ocen(...)` for the
