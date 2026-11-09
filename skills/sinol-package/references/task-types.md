@@ -45,7 +45,12 @@ The solution is compiled together with `abclib.cpp` (which has `main`) and
 includes `abclib.h`. Solutions implement the functions declared in the header.
 - The library reads the test, calls the contestant, prints the result (compared
   with `.out`, or checked by `abcchk.cpp`).
-- `fclose(stdin)` after reading, so the contestant can't read the input.
+- **Never close stdin or stdout.** sio2jail on SIO forbids `close(0)`, so
+  `fclose(stdin)` gives RV on every test of every solution ("intercepted
+  forbidden syscall close"). Read the whole test before calling the contestant
+  instead; nothing is left on stdin then. The `lib` template (and its copy in
+  `assets/`) still has `fclose(stdin)` up to contest-template PR #1 being
+  merged: delete that line in every new package.
 - Keep library state in an anonymous namespace / `static`, names unlikely to
   clash with contestants' globals.
 - Rule violations (bad arguments, too many calls): print a message that cannot
