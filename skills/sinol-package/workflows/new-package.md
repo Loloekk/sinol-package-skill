@@ -17,7 +17,9 @@ From the user's description extract: input/output format, limits, what is
 asked, intended solution and complexity, subtasks. Ask only what blocks the
 design (e.g. "is n ≤ 10^5 or 10^6?", "is any optimal answer accepted?"). Decide
 the **type**: `std` (unique answer), `chk` (many correct answers or partial
-points), `lib` (contestant implements functions), `soc` (interactive / adaptive).
+points), `lib` (contestant implements functions), `libsec` (the same with encrypted
+tests and coded verdicts, used in camp contests: task-types.md), `soc` (interactive /
+adaptive).
 
 ## 2. Propose (wait for OK)
 

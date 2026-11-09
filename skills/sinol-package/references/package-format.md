@@ -48,7 +48,8 @@ attachment in sio2. Letters within a group must increase without gaps
 `abc/dlazaw/` (optional, committed) holds the files contestants need:
 
 - library task (`lib` template): `abclib.h`, a sample library, a sample wrong
-  solution;
+  solution; with `libsec` also a plain `abc0.in`, because the package tests are
+  encrypted;
 - interactive task (`soc` template): a sample interactor (or another helper
   program).
 
