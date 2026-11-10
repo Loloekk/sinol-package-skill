@@ -90,7 +90,7 @@ skills/sinol-package/
 get it with the next update. The bundled copies are refreshed by the
 `sync assets` workflow (daily, or **Run workflow** in Actions): it runs
 `bin/sync-assets.sh` on contest-template `main` and the latest sinol-gen tag
-and opens a pull request. Locally: `bin/sync-assets.sh [contest-template]
+and commits the result to `main` when something changed. Locally: `bin/sync-assets.sh [contest-template]
 [sinol-gen]` (default `../contest-template ../sinol-gen`).
 
 To use your working copy instead of the installed plugin, link it as a

@@ -1,7 +1,7 @@
 # Refreshes the bundled copies of contest-template (main) and sinol-gen (its
 # latest tag, as `contest.py update gen` takes it) with bin/sync-assets.sh and
-# opens a pull request when something changed. Merging it releases the change:
-# plugin.json has no version, so users get every commit on main.
+# commits them to main when something changed. That releases them: plugin.json
+# has no version, so users get every commit on main.
 name: sync assets
 on:
   schedule:
@@ -9,7 +9,6 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
-  pull-requests: write
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -30,22 +29,12 @@ jobs:
       - name: sinol-gen at its latest tag
         run: git -C sinol-gen checkout -q "$(git -C sinol-gen tag --sort=-v:refname | head -n 1)"
       - run: skill/bin/sync-assets.sh contest-template sinol-gen
-      - name: pull request
+      - name: commit
         working-directory: skill
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
           git add -A
           if git diff --cached --quiet; then echo "nothing changed"; exit 0; fi
-          versions=$(cat skills/sinol-package/assets/VERSIONS)
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git switch -C sync-assets
-          git commit -q -m "Sync assets" -m "$versions"
-          git push -f origin sync-assets
-          body=$(printf 'Bundled copies refreshed by bin/sync-assets.sh:\n\n```\n%s\n```\n\nCheck that the skill text still matches (e.g. references/generator.md vs the new sinol-gen docs) before merging.' "$versions")
-          if gh pr view sync-assets --json state -q .state 2>/dev/null | grep -q OPEN; then
-            gh pr edit sync-assets --body "$body"
-          else
-            gh pr create --head sync-assets --title "Sync contest-template and sinol-gen" --body "$body"
-          fi
+          git commit -q -m "Sync assets" -m "$(cat skills/sinol-package/assets/VERSIONS)"
+          git push origin HEAD:main
