@@ -17,7 +17,9 @@ From the user's description extract: input/output format, limits, what is
 asked, intended solution and complexity, subtasks. Ask only what blocks the
 design (e.g. "is n ≤ 10^5 or 10^6?", "is any optimal answer accepted?"). Decide
 the **type**: `std` (unique answer), `chk` (many correct answers or partial
-points), `lib` (contestant implements functions), `soc` (interactive / adaptive).
+points), `lib` (contestant implements functions), `libsec` (the same with encrypted
+tests and coded verdicts, used in camp contests: task-types.md), `soc` (interactive /
+adaptive).
 
 ## 2. Propose (wait for OK)
 
@@ -33,6 +35,7 @@ solutions: abc.cpp O(n log n) · abc2.cpp independent O(n log n) (subagent)
 tests: per group min/max/random/special (sorted, all equal, ...), anti-greedy
 statement: not by me (only the subtask table) — or should I write it?
 editorial: doc/abcopr.tex, after verify
+dlazaw (library task): sample library as a terminal dialog or a simple test reader?
 ```
 
 Offer, don't impose: second independent model, more wrong solutions,
@@ -75,7 +78,9 @@ statement or translation. The editorial is the default; the user can opt out.
 8. **Checker / library / interactor** if the type needs it —
    references/task-types.md. Test the checker on wrong outputs by hand
    (malformed, wrong value, partial). Library / interactive task: also
-   `dlazaw/`, the files for contestants (package-format.md, dlazaw).
+   `dlazaw/`, the files for contestants (package-format.md, dlazaw). With a
+   test-reader sample library, ask the author to review `dlazaw/` before any
+   commit or push (task-types.md).
 9. **Wrong and slow solutions** — each targets one specific mistake, with a
    comment at the top saying which groups it must fail and why.
 10. Statement: only if asked; otherwise keep the skeleton, fill the subtask table
