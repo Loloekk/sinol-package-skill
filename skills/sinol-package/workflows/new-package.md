@@ -78,7 +78,9 @@ statement or translation. The editorial is the default; the user can opt out.
 8. **Checker / library / interactor** if the type needs it —
    references/task-types.md. Test the checker on wrong outputs by hand
    (malformed, wrong value, partial). Library / interactive task: also
-   `dlazaw/`, the files for contestants (package-format.md, dlazaw).
+   `dlazaw/`, the files for contestants (package-format.md, dlazaw). With a
+   test-reader sample library, ask the author to review `dlazaw/` before any
+   commit or push (task-types.md).
 9. **Wrong and slow solutions** — each targets one specific mistake, with a
    comment at the top saying which groups it must fail and why.
 10. Statement: only if asked; otherwise keep the skeleton, fill the subtask table

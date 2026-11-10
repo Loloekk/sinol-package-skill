@@ -73,6 +73,15 @@ includes `abclib.h`. Solutions implement the functions declared in the header.
     from it the way the real library would. Good when typing values by hand
     would be tedious. Put example tests in `dlazaw/`.
 
+    **The author has to review it.** A test reader shows contestants a test
+    format and how the library answers, and that can tell them more than the
+    statement does: how the hidden data is built, what kinds of cases the tests
+    hold, or a property a solution could exploit. Right after writing it, ask
+    the author to read `dlazaw/` (the sample library, its tests and the
+    "Eksperymenty" text) and confirm that nothing there gives away how the task
+    works or how it is tested. **Until the author answers, do not commit or
+    push the package.** If they find something, fix it and ask again.
+
   Describe the chosen one in the statement's "Eksperymenty" section, with the
   compile and run commands. See package-format.md, dlazaw.
 - Memory/time of the library count to the solution: keep it light, mention it
