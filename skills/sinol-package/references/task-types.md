@@ -56,10 +56,25 @@ includes `abclib.h`. Solutions implement the functions declared in the header.
 - Rule violations (bad arguments, too many calls): print a message that cannot
   match the expected output and `exit(0)` → WA.
 - Give contestants, in `dlazaw/` (in the template): `abclib.h` (the same as
-  `prog/abclib.h`), a sample library that reads the input simply and checks
-  no rules, and a sample wrong solution that shows how to use it. Describe
-  them in the statement's "Komunikacja" section, with the compile command.
-  See package-format.md, dlazaw.
+  `prog/abclib.h`), a sample library and a sample wrong solution that shows how
+  to call it. Contestants read these files to learn the interface, so keep
+  them as plain as possible: **no comments**, no rule checks, no encryption,
+  nothing but the calls the interface needs. A sample library of about twenty
+  lines is the right size.
+- **Ask the author which sample library to give.** There are two styles, both
+  fine:
+  - *Dialog in the terminal.* Every library function prints what it needs
+    ("Podaj n: ", "Podaj wysokość pola (x, y): ") and reads the value the
+    contestant types; at the end it prints the result and the number of calls.
+    The contestant plays the hidden data by hand. Good when a few values are
+    enough to try a solution. No test files are needed.
+  - *Simple test reader.* The library reads a plain test from stdin, in a
+    format given in the statement, keeps the hidden data and answers the calls
+    from it the way the real library would. Good when typing values by hand
+    would be tedious. Put example tests in `dlazaw/`.
+
+  Describe the chosen one in the statement's "Eksperymenty" section, with the
+  compile and run commands. See package-format.md, dlazaw.
 - Memory/time of the library count to the solution: keep it light, mention it
   in limits.
 
@@ -113,9 +128,11 @@ What the template cannot do, so it is your job:
    that only returns, and one that makes the maximal number of calls, on the
    largest tests. Give these numbers with a margin. Compile commands use
    `-std=c++23`.
-5. **Plain files for contestants.** `dlazaw/` holds the sample library, which
-   reads plain tests without the guard, and a plain `abc0.in`. `dlazaw.zip`
-   contains only `dlazaw/`, never the encrypted tests from `in/`.
+5. **Plain files for contestants.** The sample library in `dlazaw/` knows
+   nothing about the guard, the key or the verdict codes. In the test-reader
+   style it reads plain tests and `dlazaw/` gets a plain `abc0.in`; in the
+   terminal style there are no test files. `dlazaw.zip` contains only
+   `dlazaw/`, never the encrypted tests from `in/`.
 
 Checks before calling it done:
 

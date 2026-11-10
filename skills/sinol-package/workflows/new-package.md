@@ -35,6 +35,7 @@ solutions: abc.cpp O(n log n) · abc2.cpp independent O(n log n) (subagent)
 tests: per group min/max/random/special (sorted, all equal, ...), anti-greedy
 statement: not by me (only the subtask table) — or should I write it?
 editorial: doc/abcopr.tex, after verify
+dlazaw (library task): sample library as a terminal dialog or a simple test reader?
 ```
 
 Offer, don't impose: second independent model, more wrong solutions,

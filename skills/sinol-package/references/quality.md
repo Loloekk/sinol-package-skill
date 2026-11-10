@@ -31,6 +31,7 @@ Use when finishing a package and when reviewing one.
 - [ ] Library reads the whole test before calling the contestant and never closes stdin/stdout (`close(0)` is RV under sio2jail); state not clashing with contestants.
 - [ ] `libsec`: new secrets for this package, equal in the four files and in no header; cheating solutions (read stdin early, print `OK`, break a rule) get their messages (task-types.md).
 - [ ] `dlazaw/` (library / interactive task): the header equals `prog/abclib.h`, the sample library / interactor compiles and works with the model, the statement says how to use it; tests in `dlazaw/tests/` if more than one.
+- [ ] Files in `dlazaw/` have no comments and only the code the interface needs; the sample library style (terminal dialog or test reader) is the one the author chose (task-types.md).
 
 ## Editorial
 - [ ] New package: `doc/<id>opr.tex` exists, unless the user opted out. Existing package: the user was asked.
