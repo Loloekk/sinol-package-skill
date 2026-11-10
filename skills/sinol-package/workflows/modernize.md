@@ -26,7 +26,7 @@ Run a quick review (workflows/review.md steps 1 and 3, read-only) and propose:
   functions usually stay, the test list becomes `g.group` / `g.test`, the
   statement examples and the committed ocen tests become `g.example` /
   `g.ocen` with their exact content (`gen::text(R"(...)")` or `{"line", ...}`).
-  Every random test gets its own `.seed(x)` (references/generator.md#seeds).
+  Use gen.h ≥ 2.0 (seeds: references/generator.md#seeds).
   The random tests will differ from the old ones (another RNG) — say so, and
   compare the solutions' verdicts instead of the files. Keeping the exact old
   tests means reproducing the old RNG; usually not worth it, ask. Packages with

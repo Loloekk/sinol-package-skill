@@ -35,8 +35,8 @@ cp -r <pkg> <scratchpad>/review/<id> && cd <scratchpad>/review/<id>
 - Generator: does each group have min/max/random/special tests? Are the maximal
   tests really at the limit (n, values, answer size)? Are there tests against
   typical wrong approaches (greedy, overflow, recursion depth, hash
-  collisions, slow I/O)? Are trees/graphs shuffled? Shapes (path, star…)? Do
-  random tests have fixed seeds? Without them, deleting a test changes later ones.
+  collisions, slow I/O)? Are trees/graphs shuffled? Shapes (path, star…)? With
+  gen.h 1.x and no seeds, deleting a test changes later ones (generator.md#seeds).
 - inwer: does it enforce **per-group** limits and every promise of the
   statement? A test violating its group is a blocker.
 - Copy: `sinol-make gen`, `sinol-make inwer`, `sinol-make run` (WSL: `-T time`).

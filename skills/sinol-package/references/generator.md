@@ -13,12 +13,12 @@ generate.
 ```cpp
 gen::Generator<Test> g("abc", argc, argv);    // Test: the test as a struct with operator<<
 g.example("3\n1 2\n2 3\n");                   // abc0.in - the statement example
-g.ocen(random_tree, 10).seed(1);              // abc1ocen.in - public test, if the user wants one
+g.ocen(random_tree, 10);                      // abc1ocen.in - public tests, one per subtask (k-th fits subtask k)
 g.group(1) | gen::relabel | gen::shuffle_edges;
 g.test("1\n");                                // hand-written edge case
-for (int n : {10, 100, 1000}) g.test(random_tree, n).seed(100 + n);
+for (int n : {10, 100, 1000}) g.test(random_tree, n);
 g.group(2);
-g.test(random_tree, gen::near(MAXN)).seed(2001) | gen::check(is_deep, "deep");
+g.test(random_tree, gen::near(MAXN)) | gen::check(is_deep, "deep");
 return g.done();
 ```
 
@@ -30,8 +30,9 @@ Why it is done this way:
   There is no `sinol_static_tests` in config.yml. One example is `abc0.in`,
   several are `abc0a.in`, `abc0b.in`, … (the statement uses
   `\makecompactexample{0}` or `{0a}`, `{0b}`).
-- **Every random test has its own fixed seed**, so any test can be deleted
-  without changing the others (see [Seeds](#seeds)).
+- **No seeds by default**: gen.h ≥ 2.0 seeds each test from its group and
+  arguments, so deleting a test usually leaves the others alone (see
+  [Seeds](#seeds)).
 - **A struct for anything beyond a line of numbers**: one `operator<<` for the
   format, modifiers (`gen::relabel`, `gen::shuffle_edges`) instead of
   shuffling by hand in every function, and `check`s for intent.
@@ -49,29 +50,30 @@ functions if an author prefers it, but the test list stays in sinol-gen.
 
 ## Seeds
 
-Give every test that uses `R` its own `.seed(x)`, ocen tests too. Hand-written
-text tests need none.
+**gen.h ≥ 2.0** (`SINOL_GEN_VERSION` in `prog/gen.h`): write tests without
+`.seed`. The automatic seed comes from the group, the arguments and which call
+of the same function with the same arguments it is — a heuristic: deleting a
+test *usually* leaves the others unchanged, but not always (e.g. deleting one
+of several identical calls shifts the later ones).
 
-Without it the seed comes from the test's name, and deleting a test renames the
-later tests of its group: `1c` becomes `1b`, gets another seed and different
-content. A test aimed at a wrong solution can silently stop catching it. With
-fixed seeds, deleting, inserting or moving a test only shifts names; every
-other test keeps its content. `sinol-gen/guide.md` describes the library's
-default; the rule here is stricter. The template's toy tests have no seeds, so
-add them when replacing those tests.
+**If the user wants certainty** that deleting or changing tests never changes
+other tests (tests tuned against wrong solutions, a package being maintained
+over time), give **every random test its own, distinct `.seed(x)`**. gen.h
+refuses two equal seeds. To keep an existing test as it is, use the seed
+`./<id>ingen --list` shows for it.
 
-- Keep seeds unique in the package. The same seed with other arguments starts
-  from the same random numbers, and `gen.h` reports only identical tests.
-- In a loop, derive the seed from the loop variable (`.seed(100 + n)`) and check
-  that the range doesn't overlap another one.
-- To re-roll one bad test, change its number.
-- Draw only from the test's `R`. A generator shared between tests, or random
-  numbers drawn while building the test list, make tests depend on each other
-  whatever their seeds are.
-- **Existing package with seeds from names:** new seed numbers change every
-  random test, so `verify` has to be repeated. To keep the current tests, use
-  each test's current name as its seed, **before** deleting anything:
-  `.seed(gen::detail::fnv1a("1c"))`.
+`.seed(x)` also re-rolls one bad test (any new number).
+
+**gen.h 1.x** (older packages): the seed comes from the test's name, so
+deleting a test changes the later tests of its group. Before deleting or
+inserting tests there, give every random test its own seed — its current one,
+to keep it: `.seed(gen::detail::fnv1a("1c"))` — or update gen.h
+(`contest.py update gen <id>`; the random tests then change and `verify` has to
+be repeated).
+
+Draw only from the test's `R`: a generator shared between tests, or random
+numbers drawn while building the test list, make tests depend on each other
+whatever their seeds are.
 
 ## Designing tests per group
 
@@ -113,8 +115,9 @@ tests and the exact format — so it must be strict.
 
 - Read with `oi::Scanner in(stdin, oi::PL)`: `readInt(lo, hi)`, `readSpace()`,
   `readEoln()`, `readEof()`. No trailing spaces, final newline required.
-- Get the group from the name (`abc2c.in` → 2, `abc0*.in` / `*ocen.in` → 0)
-  and check **that group's** limits; group 0 gets the global ones.
+- Get the group from the name (`abc2c.in` → 2, `abc0*.in` → 0, `abc3ocen.in` → 3:
+  the k-th ocen test is meant for subtask k) and check **that group's** limits;
+  group 0 gets the global ones.
 - Check every promise of the statement: connectivity, tree, distinctness,
   sortedness, an answer exists, sum of n over test cases…
 - Print one `OK ...` line with the key parameters (n, m, max value, flags):

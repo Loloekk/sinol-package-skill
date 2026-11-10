@@ -65,13 +65,16 @@ statement or translation. The editorial is the default; the user can opt out.
    references/generator.md (what to generate) and
    references/sinol-gen/guide.md (how). Every group: smallest case, maximal
    case, random, special structures, and a test aimed at each wrong solution;
-   `gen::check` for tests whose purpose could silently break; a fixed `.seed(x)`
-   for every random test, so that tests can be deleted without changing the rest.
+   `gen::check` for tests whose purpose could silently break; no `.seed` by
+   default, a distinct one for every random test if the user wants tests that
+   never change when others are deleted (generator.md#seeds).
 6. **Statement examples and ocen tests** go into the ingen too:
    `g.example(...)` (one → `<id>0.in`, several → `0a`, `0b`; the statement
    uses `\makecompactexample{0}` or `{0a}`, `{0b}`) and `g.ocen(...)` for the
-   public tests contestants get right away (usually one or a few — ask if
-   unsure). Their outputs come from the model.
+   public tests contestants get right away. Default: **one ocen test per
+   subtask** (`<k>ocen` satisfies the limits of subtask k, a meaningful size —
+   often the maximum — so contestants can check correctness and speed per
+   subtask). Their outputs come from the model.
 7. **Input verifier** `prog/<id>inwer.cpp` — strict format, per-group limits
    from `argv[1]`, every structural promise of the statement (connected,
    distinct, sorted, answer exists…).

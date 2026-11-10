@@ -24,7 +24,8 @@ contest.py                      init, lint, export-all, update, logo
 | `update all` | tools + templates + gen, no packages |
 | `logo file.png [ids]` | new contest logo (`doc/logo.png`, top of every statement) into `_templates/*/doc/` and the packages (default: all) |
 
-`update` takes the latest tag; `--ref`, `--gen-from DIR`, `--template-from DIR`,
+`update gen` takes the latest sinol-gen tag, `update tools` / `templates` the
+`main` of contest-template (older contest.py: its latest tag); `--ref`, `--gen-from DIR`, `--template-from DIR`,
 `--dry-run`. When `lint` says a package's gen.h is old, suggest `update gen <id>`;
 "the old generator library, not sinol-gen" means the ingen must be ported first
 (workflows/modernize.md).

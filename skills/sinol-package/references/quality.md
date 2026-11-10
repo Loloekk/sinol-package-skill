@@ -22,8 +22,9 @@ Use when finishing a package and when reviewing one.
 - [ ] Trees/graphs shuffled; no accidental structure (vertex 1 always the root, edges sorted).
 - [ ] Dependencies (`subtask_dependencies`) instead of duplicated tests; listed explicitly (not transitive).
 - [ ] Every test in the ingen (sinol-gen), examples and ocen too; nothing committed in `in/` / `out/`; no `rand()` / `<random>` / `std::shuffle`.
+- [ ] One ocen test per subtask (`<k>ocen` within the limits of subtask k), unless the user decided otherwise.
 - [ ] Maximal tests not all at exactly MAXN (`gen::near`); `gen::check` where a test's purpose could silently break.
-- [ ] Every test using `R` has its own fixed `.seed(x)`, unique in the package, so deleting a test changes no other test (generator.md).
+- [ ] Seeds fit what the user wants (generator.md#seeds): gen.h ≥ 2.0 without seeds by default; every random test its own distinct `.seed(x)` when tests must never change after deleting others (always with gen.h 1.x).
 
 ## Checker / library / interactor
 - [ ] Never crashes; malformed output = WRONG; partial points as intended (task-types.md).

@@ -29,10 +29,33 @@ claude plugin marketplace add kubat1234/sinol-package-skill
 claude plugin install sinol-package@sinol-package
 ```
 
-(or `/plugin` inside Claude Code). Updates: `claude plugin marketplace update sinol-package`.
+(or `/plugin` inside Claude Code).
 
 A contest repository made from contest-template already declares the plugin
 in `.claude/settings.json`: opening it in Claude Code offers to install it.
+
+### Update
+
+```sh
+claude plugin update sinol-package@sinol-package
+```
+
+then start a new session (or `/reload-plugins` in an open one).
+`claude plugin marketplace update` alone only refreshes the list of plugins,
+it does not update the installed one.
+
+### Auto-update
+
+Off by default for marketplaces outside Anthropic's own, and a marketplace
+cannot turn it on by itself — a settings file has to. Already on in contest
+repositories made from contest-template (their `.claude/settings.json` sets
+`"autoUpdate": true`). Everywhere else turn it on once:
+`/plugin` → **Marketplaces** → `sinol-package` → **Enable auto-update**
+(or add `"autoUpdate": true` to the `sinol-package` entry of
+`extraKnownMarketplaces` in `~/.claude/settings.json`). From then on Claude
+Code checks for a new version in the background during each session and
+installs it; it takes effect in the next session (or after `/reload-plugins`). `DISABLE_AUTOUPDATER=1` or `DISABLE_UPDATES=1` turn this
+off unless `FORCE_AUTOUPDATE_PLUGINS=1` is set too.
 
 ## Use
 
@@ -63,8 +86,12 @@ skills/sinol-package/
   assets/VERSIONS              which versions were copied
 ```
 
-After a change in contest-template or sinol-gen run `bin/sync-assets.sh` and
-bump `version` in `.claude-plugin/plugin.json`.
+`plugin.json` has no `version`, so every commit on `main` is a release: users
+get it with the next update. The bundled copies are refreshed by the
+`sync assets` workflow (daily, or **Run workflow** in Actions): it runs
+`bin/sync-assets.sh` on contest-template `main` and the latest sinol-gen tag
+and opens a pull request. Locally: `bin/sync-assets.sh [contest-template]
+[sinol-gen]` (default `../contest-template ../sinol-gen`).
 
 To use your working copy instead of the installed plugin, link it as a
 personal skill (and don't install the plugin at the same time):
