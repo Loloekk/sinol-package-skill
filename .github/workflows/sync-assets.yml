@@ -43,6 +43,9 @@ jobs:
           git switch -C sync-assets
           git commit -q -m "Sync assets" -m "$versions"
           git push -f origin sync-assets
-          gh pr view sync-assets --json state -q .state 2>/dev/null | grep -q OPEN ||
-            gh pr create --head sync-assets --title "Sync contest-template and sinol-gen" \
-              --body "$(printf 'Bundled copies refreshed by bin/sync-assets.sh:\n\n```\n%s\n```\n\nCheck that the skill text still matches (e.g. references/generator.md vs the new sinol-gen docs) before merging.' "$versions")"
+          body=$(printf 'Bundled copies refreshed by bin/sync-assets.sh:\n\n```\n%s\n```\n\nCheck that the skill text still matches (e.g. references/generator.md vs the new sinol-gen docs) before merging.' "$versions")
+          if gh pr view sync-assets --json state -q .state 2>/dev/null | grep -q OPEN; then
+            gh pr edit sync-assets --body "$body"
+          else
+            gh pr create --head sync-assets --title "Sync contest-template and sinol-gen" --body "$body"
+          fi
