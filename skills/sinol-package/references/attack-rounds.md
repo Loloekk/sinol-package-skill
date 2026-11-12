@@ -24,6 +24,11 @@ Ask the author in the plan (new-package step 2) how many rounds to run,
 The author can ask for more rounds later ("jeszcze dwie rundy"). Each round
 continues from the current tests and solutions; nothing is redone.
 
+Every round makes the package bigger: in one hard task each round added about
+10 tests and 10–20 solutions. So in the same plan also ask how many tests per
+subtask and how many solutions should stay in the package at the end. Suggest
+about 7 tests per subtask and about 15 solutions.
+
 ## Writing wrong and slow solutions: a subagent
 
 Wrong solutions, correctness heuristics and slow solutions (new-package step 3.9)
@@ -100,8 +105,17 @@ Ask it for:
 
 ## After the last round
 
-Ask before you prune, and ask how far. A typical request is "about 7 tests per
-subtask, 15 solutions".
+After the rounds, pruning is the default: tests and solutions from the rounds
+stay in the package only when the author decides so.
+
+- If the author already gave the numbers, use them.
+- If not, propose about 7 tests per subtask and about 15 solutions, and ask.
+  Until the author answers, repeat the question in every report and status
+  message. Don't drop it after asking once.
+- The numbers are a target, not a hard cap. If a group needs more tests (each
+  test is the only one catching some solution), or more solutions are needed
+  to cover distinct flaws, keep more. Then say so clearly in the report: which
+  groups or solutions are over the number, by how much, and why.
 
 - **Tests.** For each group G, a solution is *relevant* if it passes G's
   dependency groups and fails G. Keep tests greedily until every relevant

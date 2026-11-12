@@ -35,6 +35,7 @@ solutions: abc.cpp O(n log n) · abc2.cpp independent O(n log n) (subagent)
 tests: per group min/max/random/special (sorted, all equal, ...), anti-greedy
 statement: not by me (only the subtask table) — or should I write it?
 attack rounds: how many? (hard task: 2–4 recommended; easy: usually 0)
+after the rounds keep: ~7 tests per subtask, ~15 solutions? (or other numbers)
 editorial: doc/abcopr.tex, after verify
 dlazaw (library task): sample library as a terminal dialog or a simple test reader?
 ```
@@ -113,8 +114,9 @@ Look at the table, not only the summary:
   should fail, add a test (don't weaken the solution);
 - no group where everything passes trivially (group too weak).
 
-Then run the attack rounds the author asked for (references/attack-rounds.md),
-and prune tests and solutions if they want that.
+Then run the attack rounds the author asked for (references/attack-rounds.md)
+and prune tests and solutions to the numbers the author gave. If the author
+hasn't answered yet, keep asking until they do.
 
 Set the time limit from the model's time (with `time`: roughly 3–5× the model's
 worst time, and slow solutions must be clearly over it). Then:
